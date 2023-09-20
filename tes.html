@@ -1,97 +1,96 @@
-<!DOCTYPE html>
-<html>
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 6 Jquery</title>
     <style>
-        table {
-            border-collapse: collapse;
-            width: 50%;
-            margin: auto;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
         }
 
-        th,
-        td {
-            border: 1px solid black;
-            padding: 8px;
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
             text-align: center;
         }
 
-        th {
-            background-color: #cccccc;
+        ul li {
+            display: inline-block;
+            margin: 10px;
+        }
+
+        ul li a {
+            text-decoration: none;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        ul li a:hover {
+            background-color: #555;
+        }
+
+        #result {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        #result h2 {
+            color: #333;
+        }
+
+        #result p {
+            color: #555;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
-
 <body>
+    <h1>Silahkan Pilih Bidang:</h1>
+    <ul>
+        <li><a href="#" id="profile">Profile</a></li>
+        <li><a href="#" id="moto">Moto Hidup</a></li>
+        <li><a href="#" id="keahlian">Keahlian</a></li>
+    </ul>
 
-    <table>
-        <tr>
-            <th>Nama Pegawai</th>
-            <th>Jabatan</th>
-            <th>Gapok</th>
-            <th>Tunjangan Jabatan</th>
-            <th>Tunjangan Kesehatan</th>
-            <th>Gaji Kotor</th>
-            <th>Agama</th>
-            <th>Zakat Profesi</th>
-            <th>Take Home Pay</th>
-        </tr>
+    <div id="result">
+        <!-- Tempat data akan ditampilkan -->
+    </div>
 
-        <!-- Data Pegawai -->
-        <script>
-            for (let i = 1; i <= 10; i++) {
-                const namaPegawai = `Pegawai${i}`;
-                let jabatan, gapok;
+    <script>
+        $(document).ready(function() {
+            // Menampilkan profile pribadi
+            $("#profile").click(function() {
+                $("#result").html("<h2>Profile</h2><p>Nama : Toriqul Firdaus Tear P.</p>\n<p>Email : idhofirdauz@gmail.com</p>");
+            });
 
-                // Tentukan jabatan menggunakan if multikondisi
-                if (i <= 2) {
-                    jabatan = 'Manager';
-                    gapok = 15000000;
-                } else if (i >= 3 && i <= 5) {
-                    jabatan = 'Asisten Manager';
-                    gapok = 10000000;
-                } else if (i >= 6 && i <= 8) {
-                    jabatan = 'Supervisor';
-                    gapok = 7000000;
-                } else {
-                    jabatan = 'Staff';
-                    gapok = 4000000;
-                }
+            // Menampilkan moto hidup dan alasan
+            $("#moto").click(function() {
+                $("#result").html("<h2>Moto Hidup</h2><p>'Keep calm and code on.'(Tetap tenang dan teruskan menulis kode.)</p>");
+            });
 
-                // Hitung tunjangan jabatan, tunjangan kesehatan, dan gaji kotor
-                const tunjanganJabatan = (20 / 100) * gapok;
-                const tunjanganKesehatan = (10 / 100) * gapok;
-                const gajiKotor = gapok + tunjanganJabatan + tunjanganKesehatan;
-
-                // Tentukan agama menggunakan ternary
-                const agama = i % 2 == 1 ? 'Muslim' : 'Non Muslim';
-
-                // Hitung zakat profesi jika Muslim dan gaji kotor >= 7jt
-                const zakatProfesi = agama == 'Muslim' && gajiKotor >= 7000000 ? (2.5 / 100) * gajiKotor : 0;
-
-                // Hitung take home pay
-                const takeHomePay = gajiKotor - zakatProfesi;
-
-                // Tambahkan baris data ke tabel dengan warna sesuai genap/ganjil
-                const rowColor = i % 2 == 0 ? 'blue' : 'yellow';
-                document.write(`
-                <tr style="background-color:${rowColor}">
-                    <td>${namaPegawai}</td>
-                    <td>${jabatan}</td>
-                    <td>${gapok}</td>
-                    <td>${tunjanganJabatan}</td>
-                    <td>${tunjanganKesehatan}</td>
-                    <td>${gajiKotor}</td>
-                    <td>${agama}</td>
-                    <td>${zakatProfesi}</td>
-                    <td>${takeHomePay}</td>
-                </tr>
-                `);
-            }
-        </script>
-
-    </table>
-
+            // Menampilkan keahlian dan pengalaman
+            $("#keahlian").click(function() {
+                $("#result").html("<h2>Keahlian</h2><p>JavaScript</p>\n<p>PHP</p>\n<p>Python</p>");
+            });
+        });
+    </script>
 </body>
-
 </html>
